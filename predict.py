@@ -515,23 +515,20 @@ if __name__ == '__main__':
                 predict_list.append(parsePredProbs(out))
                 pre_lab_list.append(getPredLabs(parsePredProbs(out), thre))
 
-
         with open(filepath, 'w') as file_object:
-            # Gets the length of the sublist, assuming that all sublists are of the same length
+
             list_length = len(pre_lab_list[0])
             print(len(thre_list))
-            file_object.write(
-                "Index\tAA\tPNums\tState\n")
 
-            # List parsing was used to compare the number of ones and zeros at each index position and generate new lists
+            file_object.write(
+                "Index\tAA\tProb[{:.3f}]\tState\n".format(thre_list[0]))
+
             result = []
-            nums = []
             for j in range(list_length):
                 res = 0
                 for k in range(len(pre_lab_list)):
                     if pre_lab_list[k][j] == 1:
                         res += 1
-                nums.append(res)
                 if res > (len(thre_list) // 2):
                     result.append('B')
                 else:
@@ -539,7 +536,7 @@ if __name__ == '__main__':
 
             for i in range(list_length):
                 file_object.write(
-                    "{}\t{}\t{}\t{}\n".format(i, seq[i], nums[i], result[i]))
+                    "{}\t{}\t{:.3f}\t{}\n".format(i, seq[i], predict_list[0][i], result[i]))
             file_object.close()
         # exit()
         torch.cuda.empty_cache()
