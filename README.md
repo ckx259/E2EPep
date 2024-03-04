@@ -41,13 +41,13 @@ conda activate E2EPep
 ## Run example
 * The prediction command of E2EPep
 ~~~
-  $ python predict.py -sf example/results_of_voting/ -seq_fa example/seq.fa
+  $ python predict.py -sf example/results_of_e2epep/ -seq_fa example/seq.fa
 ~~~
 
 * The prediction command of E2EPep+ by using single fold model ("-n" represent using nth fold model, n can be 0,1,2,3, or 4)
 
 ~~~
-  $ python predictPlus.py -sf example/resultsPlus_of_single_fold_model/ -seq_fa example/seq.fa -n 0
+  $ python predictPlus.py -sf example/results_of_e2epepPlus/ -seq_fa example/seq.fa -n 0
 ~~~
 
 
